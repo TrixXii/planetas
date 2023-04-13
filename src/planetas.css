@@ -1,0 +1,16 @@
+.mod {
+    height: 210px;
+    font-size: 18px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.pagination {
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.page-link {
+    background-color: transparent !important;
+    color: white;
+}

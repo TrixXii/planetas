@@ -59,3 +59,7 @@
 .cajaBor {
     box-shadow: 1px 0px 20px rgba(157, 156, 156, 0.281);
 }
+
+.eresDelP {
+    vertical-align: middle;
+}

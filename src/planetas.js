@@ -258,12 +258,12 @@ export function Planets() {
                     const handleViewPlanet = (planetId) => {
                         setSelectedPlanet(planetId);
                     };
-                    const { name, height, mass, hair_color, gender, skin_color, eye_color } = residentDetails;
+                    const { name, height, mass, hair_color, gender, skin_color, eye_color, birth_year } = residentDetails;
                     const planetName = planetDetails.name;
                     const planetUrl = planetDetails;
 
                     return ( < > {
-                            atras ? (atras && < Planets / > ) : (selectedPlanet ? ( < VerPlaneta planet = { selectedPlanet }
+                            atras ? (atras && < Planets / > ) : (selectedPlanet ? ( < VerPlanetaConFetch planetFetch = { selectedPlanet }
                                 />) : ( <
                                 div >
                                 <
@@ -310,7 +310,12 @@ export function Planets() {
                                 /tr> <
                                 tr >
                                 <
-                                th > Reside en el planeta < /th> <
+                                th > Birth year < /th> <
+                                td > { birth_year } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th className = "eresDelP" > Reside en el planeta < /th> <
                                 td >
                                 <
                                 button className = "contRes"
@@ -331,6 +336,134 @@ export function Planets() {
                                 className = "btn btn-sm btn-outline-secondary detallePla"
                                 onClick = {
                                     () => setatras(true) } > < i className = "fa fa-angle-left" > < /i> Volver</button >
+                                <
+                                /div>
+                            ))
+                        } <
+                        />
+                    );
+                }
+
+                function VerPlanetaConFetch({ planetFetch }) {
+                    const [atras, setatras] = useState(false);
+                    const [planetDetails, setPlanetDetails] = useState(null);
+                    const [idResident, setIdResident] = useState(null);
+
+                    useEffect(() => {
+                        fetch(planetFetch.url)
+                            .then((res) => res.json())
+                            .then((data) => {
+                                const residentPromises = data.residents.map((residentUrl) =>
+                                    fetch(residentUrl).then((res) => res.json())
+                                );
+                                Promise.all(residentPromises).then((residents) => {
+                                    setPlanetDetails({...data, residents });
+                                });
+                            })
+                            .catch((err) => console.error(err));
+                    }, [planetFetch]);
+
+                    if (!planetDetails) {
+                        return <div > Loading... < /div>;
+                    }
+
+                    const handleViewResi = (resiId) => {
+                        setIdResident(resiId);
+                    };
+                    const { name, diameter, climate, population, residents, terrain } = planetDetails;
+
+                    return ( <
+                        > {
+                            atras ? (atras && < Planets / > ) : (idResident ? ( < VerResidente idResident = { idResident }
+                                />) : ( <
+                                div className = "vewPlantS" >
+                                <
+                                h2 > { name } < /h2> <
+                                div className = "responsive" >
+                                <
+                                div className = " divCar" >
+                                <
+                                h2 > Caracteristicas: < /h2> <
+                                Table striped hover variant = "dark"
+                                className = "table" >
+                                <
+                                tbody >
+                                <
+                                tr >
+                                <
+                                th > Clima < /th> <
+                                td > { climate } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Gravedad < /th> <
+                                td > { planetFetch.gravity } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Población < /th> <
+                                td > { population } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Diametro < /th> <
+                                td > { diameter } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Terreno < /th> <
+                                td > { terrain } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Superficie de agua < /th> <
+                                td > { planetFetch.surface_water } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Periodo de rotación < /th> <
+                                td > { planetFetch.rotation_period } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Periodo orbital < /th> <
+                                td > { planetFetch.orbital_period } < /td> <
+                                /tr> <
+                                /tbody> <
+                                /Table> <
+                                /div> <
+                                div className = "divCar" >
+                                <
+                                h2 > Residents: < /h2> <
+                                div className = "row justify-content-center " > {
+                                    planetFetch.residents.length === 0 ? ( <
+                                        div className = "col-md-12" >
+                                        <
+                                        p > No hay residentes < /p> <
+                                        /div>
+                                    ) : (
+                                        residents.map((resident) => ( <
+                                            div className = "col-md-5 "
+                                            key = { resident.name } >
+                                            <
+                                            ListGroup className = "listaResidents" >
+                                            <
+                                            ListGroup.Item className = "contRes"
+                                            action variant = "dark"
+                                            onClick = {
+                                                () => handleViewResi(resident.url) } > { resident.name } < /ListGroup.Item> <
+                                            /ListGroup> <
+                                            /div>
+                                        ))
+                                    )
+                                } <
+                                /div> <
+                                /div> <
+                                /div> <
+                                button type = "button"
+                                className = "btn btn-sm btn-outline-secondary detallePla"
+                                onClick = {
+                                    () => setatras(true) } > < i class = "fa fa-angle-left" > < /i> Volver</button >
                                 <
                                 /div>
                             ))

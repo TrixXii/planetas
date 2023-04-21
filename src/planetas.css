@@ -38,6 +38,7 @@
 }
 
 .table {
+    box-shadow: 1px 0px 15px rgba(255, 255, 255, 0.281);
     margin: auto;
     text-align: left;
     font-size: 17px;
@@ -51,5 +52,10 @@
 }
 
 .contRes {
+    box-shadow: 1px 0px 20px rgba(255, 255, 255, 0.281);
     margin: 8px 0px;
+}
+
+.cajaBor {
+    box-shadow: 1px 0px 20px rgba(157, 156, 156, 0.281);
 }

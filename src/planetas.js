@@ -53,7 +53,7 @@ export function Planets() {
                         planets.map((planet) => ( <
                                 Col key = { planet.name } >
                                 <
-                                Card className = "text-bg-dark"
+                                Card className = "cajaBor text-bg-dark"
                                 style = {
                                     { height: '250px' } } >
                                 <
@@ -131,7 +131,7 @@ export function Planets() {
 
                     return ( <
                         > {
-                            atras ? (atras && < Planets / > ) : (idResident ? ( < VerResidente resiId = { idResident }
+                            atras ? (atras && < Planets / > ) : (idResident ? ( < VerResidente idResident = { idResident }
                                 />) : ( <
                                 div className = "vewPlantS" >
                                 <
@@ -208,7 +208,7 @@ export function Planets() {
                                             ListGroup.Item className = "contRes"
                                             action variant = "dark"
                                             onClick = {
-                                                () => handleViewResi(resident) } > { resident.name } < /ListGroup.Item> <
+                                                () => handleViewResi(resident.url) } > { resident.name } < /ListGroup.Item> <
                                             /ListGroup> <
                                             /div>
                                         ))
@@ -231,38 +231,109 @@ export function Planets() {
 
                 function VerResidente({ idResident }) {
                     const [residentDetails, setResidentDetails] = useState(null);
+                    const [planetDetails, setPlanetDetails] = useState(null);
                     const [atras, setatras] = useState(false);
+                    const [selectedPlanet, setSelectedPlanet] = useState(null);
+
 
                     useEffect(() => {
-                        fetch(`https://swapi.dev/api/people/${idResident}/`)
+                        fetch(`${idResident}`)
                             .then(response => response.json())
                             .then(data => setResidentDetails(data))
                             .catch(error => console.error(error));
                     }, [idResident]);
 
-                    if (!residentDetails) {
+                    useEffect(() => {
+                        if (residentDetails) {
+                            fetch(residentDetails.homeworld)
+                                .then(response => response.json())
+                                .then(data => setPlanetDetails(data))
+                                .catch(error => console.error(error));
+                        }
+                    }, [residentDetails]);
+
+                    if (!residentDetails || !planetDetails) {
                         return <div > Loading... < /div>;
                     }
-
-                    const { name, height, mass, hair_color, skin_color, eye_color } = residentDetails;
+                    const handleViewPlanet = (planetId) => {
+                        setSelectedPlanet(planetId);
+                    };
+                    const { name, height, mass, hair_color, gender, skin_color, eye_color } = residentDetails;
+                    const planetName = planetDetails.name;
+                    const planetUrl = planetDetails;
 
                     return ( < > {
-                            atras ? (atras && < Planets / > ) : ( <
+                            atras ? (atras && < Planets / > ) : (selectedPlanet ? ( < VerPlaneta planet = { selectedPlanet }
+                                />) : ( <
                                 div >
                                 <
-                                h2 > { name } < /h2> <
-                                p > Height: { height } < /p> <
-                                p > Mass: { mass } < /p> <
-                                p > Hair color: { hair_color } < /p> <
-                                p > Skin color: { skin_color } < /p> <
-                                p > Eye color: { eye_color } < /p> <
+                                h2 className = "mb-2" > { name } < /h2> <
+                                div className = "responsive" >
+                                <
+                                div className = " divCar" >
+                                <
+                                h2 className = "mb-4" > Caracteristicas: < /h2> <
+                                Table striped hover variant = "dark"
+                                className = "table" >
+                                <
+                                tbody >
+                                <
+                                tr >
+                                <
+                                th > Altura < /th> <
+                                td > { height } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Mass < /th> <
+                                td > { mass } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Hair color < /th> <
+                                td > { hair_color } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Skin color < /th> <
+                                td > { skin_color } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Color de ojos < /th> <
+                                td > { eye_color } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Genero < /th> <
+                                td > { gender } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Reside en el planeta < /th> <
+                                td >
+                                <
+                                button className = "contRes"
+                                onClick = {
+                                    () => handleViewPlanet(planetUrl) }
+                                action variant = "dark" > { planetName } < /button> <
+                                /td> <
+                                /tr> <
+                                /tbody> <
+                                /Table> <
+                                /div>
+
+                                <
+                                /div>
+
+                                <
                                 button type = "button"
                                 className = "btn btn-sm btn-outline-secondary detallePla"
                                 onClick = {
-                                    () => setatras(true) } > < i class = "fa fa-angle-left" > < /i> Volver</button >
+                                    () => setatras(true) } > < i className = "fa fa-angle-left" > < /i> Volver</button >
                                 <
                                 /div>
-                            )
+                            ))
                         } <
                         />
                     );

@@ -15,20 +15,41 @@
     color: white;
 }
 
-h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+
+/* Estilos de la tabla */
+
+.vewPlantS {
+    margin: auto;
+    border-collapse: collapse;
 }
 
-p {
-    margin-bottom: 5px;
+.responsive {
+    display: flex;
+    width: 90%;
+    margin: auto;
 }
 
-.residents {
-    margin-top: 20px;
-    padding-left: 20px;
+.divCar {
+    width: 600px;
 }
 
-.btn {
-    margin-top: 20px;
+.resi {
+    justify-content: center;
+}
+
+.table {
+    margin: auto;
+    text-align: left;
+    font-size: 17px;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.listaResidents {
+    font-size: 17px;
+    justify-content: center;
+}
+
+.contRes {
+    margin: 8px 0px;
 }

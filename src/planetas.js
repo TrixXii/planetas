@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import { Col, Pagination, Row } from "react-bootstrap";
+import { Col, ListGroup, Pagination, Row, Table } from "react-bootstrap";
 
 export function Planets() {
     const [planets, setPlanets] = useState([]);
@@ -40,183 +40,230 @@ export function Planets() {
         setverPla(true);
     };
 
-    return ( <
-        > {
-            verPla ? (
-                verPla && < VerPlaneta planet = { selectedPlanet }
-                />
-            ) : ( <
-                div id = "pp" >
-                <
-                div id = "contPlanetas" >
-                <
-                Row xs = { 1 }
-                md = { 3 }
-                className = "g-4 m-2 text-start" > {
-                    planets.map((planet) => ( <
-                        Col key = { planet.name } >
-                        <
-                        Card className = "text-bg-dark"
-                        style = {
-                            { height: '250px' } } >
-                        <
-                        Card.Body >
-                        <
-                        Card.Title > { planet.name } < /Card.Title> <
-                        Card.Text >
-                        <
-                        b > Clima: < /b> {planet.climate} <
-                        br / >
-                        <
-                        b > Gravedad: < /b> {planet.gravity} <
-                        br / >
-                        <
-                        b > Población: < /b> {planet.population} <
-                        /Card.Text> <
-                        div className = "d-flex justify-content-between align-items-center" >
-                        <
-                        div className = "btn-group" >
-                        <
-                        button type = "button"
-                        className = "btn btn-sm btn-outline-secondary detallePla"
-                        onClick = {
-                            () => handleViewPlanet(planet) } > View < /button>
-
-                        <
-                        button type = "button"
-                        className = "btn btn-sm btn-outline-secondary" >
-                        Edit <
-                        /button> <
-                        /div> <
-                        small className = "text-body-secondary" > UwU < /small> <
-                        /div> <
-                        /Card.Body> <
-                        /Card> <
-                        /Col>
-                    ))
-                } <
-                /Row> <
-                /div> <
-                Pagination className = "my-3" >
-                <
-                Pagination.Prev onClick = { handlePrevPage }
-                disabled = { currentPage === 1 }
-                /> <
-                Pagination.Item active > { `Página ${currentPage}` } < /Pagination.Item> <
-                Pagination.Next onClick = { handleNextPage }
-                disabled = { currentPage === 6 }
-                /> <
-                /Pagination> <
-                /div>
-            )
-        } <
-        />);
-    }
-
-    function VerPlaneta({ planet }) {
-        const [atras, setatras] = useState(false);
-        const [planetDetails, setPlanetDetails] = useState(null);
-
-        useEffect(() => {
-            async function fetchPlanetDetails() {
-                const response = await fetch(planet.url);
-                const data = await response.json();
-
-                const residentPromises = data.residents.map((residentUrl) =>
-                    fetch(residentUrl).then((res) => res.json())
-                );
-                const residents = await Promise.all(residentPromises);
-
-                setPlanetDetails({...data, residents });
-            }
-
-            fetchPlanetDetails();
-        }, [planet]);
-
-        if (!planetDetails) {
-            return <div > Loading... < /div>;
-        }
-
-        const { name, diameter, climate, population, residents, terrain } = planetDetails;
-
-        return ( <
-            > {
-                atras ? (
-                    atras && < Planets / >
-                ) : ( <
-                    div >
+    return ( < > {
+                verPla ? (verPla && < VerPlaneta planet = { selectedPlanet }
+                    />
+                ) : ( < div id = "pp" >
                     <
-                    div className = "row" >
+                    div id = "contPlanetas" >
                     <
-                    div className = "col" >
-                    <
-                    h2 > { name } < /h2> <
-                    p > < b > Clima: < /b> {climate}</p >
-                    <
-                    p > < b > Gravedad: < /b> {planet.gravity}</p >
-                    <
-                    p > < b > Población: < /b>  {population}</p >
-                    <
-                    p > < b > Diametro: < /b> {diameter}</p >
-                    <
-                    p > < b > Terreno: < /b> {terrain}</p >
-                    <
-                    p > < b > Superficie de agua: < /b> {planet.surface_water}</p >
-                    <
-                    p > < b > Periodo de rotación: < /b> {planet.rotation_period}</p >
-                    <
-                    p > < b > Periodo orbital: < /b> {planet.orbital_period}</p >
-                    <
-                    /div> <
-                    /div> <
-                    h2 > Residents: < /h2> <
-                    div > {
-                        planet.residents.length === 0 ? (
-                            " No hay residentes"
-                        ) : ( <
-                            div > {
-                                residents.map((resident) => ( <
-                                    p key = { resident.name } > { resident.name } < /p>
-                                ))
+                    Row xs = { 1 }
+                    md = { 3 }
+                    className = "g-4 m-2 text-start" > {
+                        planets.map((planet) => ( <
+                                Col key = { planet.name } >
+                                <
+                                Card className = "text-bg-dark"
+                                style = {
+                                    { height: '250px' } } >
+                                <
+                                Card.Body >
+                                <
+                                Card.Title > { planet.name } < /Card.Title>  <
+                                Card.Text >
+                                <
+                                b > Clima: < /b> {planet.climate} <br/ >
+                                <
+                                b > Gravedad: < /b> {planet.gravity} <br/ >
+                                <
+                                b > Población: < /b> {planet.population}  <
+                                /Card.Text>  <
+                                div className = "d-flex justify-content-between align-items-center" >
+                                <
+                                div className = "btn-group" >
+                                <
+                                button type = "button"
+                                className = "btn btn-sm btn-outline-secondary detallePla"
+                                onClick = {
+                                    () => handleViewPlanet(planet) } > View < /button> <
+                                /div> <
+                                small className = "text-body-secondary" > UwU < /small>  <
+                                /div>  <
+                                /Card.Body>  <
+                                /Card>  <
+                                /Col>))
                             } <
+                            /Row>  <
+                            /div> <Pagination className = "my-3" > <
+                            Pagination.Prev onClick = { handlePrevPage }
+                            disabled = { currentPage === 1 }
+                            />  <
+                            Pagination.Item active > { `Página ${currentPage}` } < /Pagination.Item>  <
+                            Pagination.Next onClick = { handleNextPage }
+                            disabled = { currentPage === 6 }
+                            /> </Pagination >
+                            <
                             /div>
                         )
-                    } <
-                    /div> <
-                    button type = "button"
-                    className = "btn btn-sm btn-outline-secondary detallePla"
-                    onClick = {
-                        () => setatras(true) } > Volver < /button> <
-                    /div>
-                )
-            } <
-            />
-        );
-    }
+                    } < />);
+                }
 
-    // function VerPlaneta(props) {
-    //     const [atras, setatras] = useState(false);
-    // const planet = props.planet;
+                function VerPlaneta({ planet }) {
+                    const [atras, setatras] = useState(false);
+                    const [planetDetails, setPlanetDetails] = useState(null);
+                    const [idResident, setIdResident] = useState(null);
 
-    // return(<> {atras ? (atras && < Planets > </Planets>  ):
-    //     <div>
-    //         <div className="row">
-    //             <div className="col">
-    //                 <h2>{planet.name}</h2>
-    //                 <p><b>Clima:</b> {planet.climate}</p>
-    //                 <p><b>Gravedad:</b> {planet.gravity}</p>
-    //                 <p><b>Población:</b> {planet.population}</p>
-    //                 <p><b>Diametro:</b> {planet.diameter}</p>
-    //                 <p><b>Terreno:</b> {planet.terrain}</p>
-    //                 <p><b>Superficie de agua:</b> {planet.surface_water}</p>
-    //                 <p><b>Periodo de rotación:</b> {planet.rotation_period}</p>
-    //                 <p><b>Periodo orbital:</b> {planet.orbital_period}</p>
-    //             </div>
-    //         </div>
-    //             <button type="button" className="btn btn-sm btn-outline-secondary detallePla" 
-    //                     onClick={() => setatras(true)}>Volver
-    //             </button>
-    //     </div>
-    // }
-    // </>);
-    // }
+                    useEffect(() => {
+                        const xhr = new XMLHttpRequest();
+                        xhr.addEventListener('readystatechange', () => {
+                            if (xhr.readyState === 4 && xhr.status === 200) {
+                                const data = JSON.parse(xhr.responseText);
+                                const residentPromises = data.residents.map((residentUrl) =>
+                                    fetch(residentUrl).then((res) => res.json())
+                                );
+                                Promise.all(residentPromises).then((residents) => {
+                                    setPlanetDetails({...data, residents });
+                                });
+                            }
+                        });
+                        xhr.open('GET', planet.url);
+                        xhr.send();
+                    }, [planet]);
+
+                    if (!planetDetails) {
+                        return <div > Loading... < /div>;
+                    }
+
+                    const handleViewResi = (resiId) => {
+                        setIdResident(resiId);
+                    };
+                    const { name, diameter, climate, population, residents, terrain } = planetDetails;
+
+                    return ( <
+                        > {
+                            atras ? (atras && < Planets / > ) : (idResident ? ( < VerResidente resiId = { idResident }
+                                />) : ( <
+                                div className = "vewPlantS" >
+                                <
+                                h2 > { name } < /h2> <
+                                div className = "responsive" >
+                                <
+                                div className = " divCar" >
+                                <
+                                h2 > Caracteristicas: < /h2> <
+                                Table striped hover variant = "dark"
+                                className = "table" >
+                                <
+                                tbody >
+                                <
+                                tr >
+                                <
+                                th > Clima < /th> <
+                                td > { climate } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Gravedad < /th> <
+                                td > { planet.gravity } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Población < /th> <
+                                td > { population } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Diametro < /th> <
+                                td > { diameter } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Terreno < /th> <
+                                td > { terrain } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Superficie de agua < /th> <
+                                td > { planet.surface_water } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Periodo de rotación < /th> <
+                                td > { planet.rotation_period } < /td> <
+                                /tr> <
+                                tr >
+                                <
+                                th > Periodo orbital < /th> <
+                                td > { planet.orbital_period } < /td> <
+                                /tr> <
+                                /tbody> <
+                                /Table> <
+                                /div> <
+                                div className = "divCar" >
+                                <
+                                h2 > Residents: < /h2> <
+                                div className = "row justify-content-center " > {
+                                    planet.residents.length === 0 ? ( <
+                                        div className = "col-md-12" >
+                                        <
+                                        p > No hay residentes < /p> <
+                                        /div>
+                                    ) : (
+                                        residents.map((resident) => ( <
+                                            div className = "col-md-5 "
+                                            key = { resident.name } >
+                                            <
+                                            ListGroup className = "listaResidents" >
+                                            <
+                                            ListGroup.Item className = "contRes"
+                                            action variant = "dark"
+                                            onClick = {
+                                                () => handleViewResi(resident) } > { resident.name } < /ListGroup.Item> <
+                                            /ListGroup> <
+                                            /div>
+                                        ))
+                                    )
+                                } <
+                                /div> <
+                                /div> <
+                                /div> <
+                                button type = "button"
+                                className = "btn btn-sm btn-outline-secondary detallePla"
+                                onClick = {
+                                    () => setatras(true) } > < i class = "fa fa-angle-left" > < /i> Volver</button >
+                                <
+                                /div>
+                            ))
+                        } <
+                        />
+                    );
+                }
+
+                function VerResidente({ idResident }) {
+                    const [residentDetails, setResidentDetails] = useState(null);
+                    const [atras, setatras] = useState(false);
+
+                    useEffect(() => {
+                        fetch(`https://swapi.dev/api/people/${idResident}/`)
+                            .then(response => response.json())
+                            .then(data => setResidentDetails(data))
+                            .catch(error => console.error(error));
+                    }, [idResident]);
+
+                    if (!residentDetails) {
+                        return <div > Loading... < /div>;
+                    }
+
+                    const { name, height, mass, hair_color, skin_color, eye_color } = residentDetails;
+
+                    return ( < > {
+                            atras ? (atras && < Planets / > ) : ( <
+                                div >
+                                <
+                                h2 > { name } < /h2> <
+                                p > Height: { height } < /p> <
+                                p > Mass: { mass } < /p> <
+                                p > Hair color: { hair_color } < /p> <
+                                p > Skin color: { skin_color } < /p> <
+                                p > Eye color: { eye_color } < /p> <
+                                button type = "button"
+                                className = "btn btn-sm btn-outline-secondary detallePla"
+                                onClick = {
+                                    () => setatras(true) } > < i class = "fa fa-angle-left" > < /i> Volver</button >
+                                <
+                                /div>
+                            )
+                        } <
+                        />
+                    );
+                }

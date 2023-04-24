@@ -55,7 +55,8 @@ export function Planets() {
                                 <
                                 Card className = "cajaBor text-bg-dark"
                                 style = {
-                                    { height: '250px' } } >
+                                    { height: '250px' }
+                                } >
                                 <
                                 Card.Body >
                                 <
@@ -66,8 +67,8 @@ export function Planets() {
                                 <
                                 b > Gravedad: < /b> {planet.gravity} <br/ >
                                 <
-                                b > Población: < /b> {planet.population}  <
-                                /Card.Text>  <
+                                b > Población: < /b> {planet.population}  < /
+                                Card.Text > <
                                 div className = "d-flex justify-content-between align-items-center" >
                                 <
                                 div className = "btn-group" >
@@ -75,16 +76,17 @@ export function Planets() {
                                 button type = "button"
                                 className = "btn btn-sm btn-outline-secondary detallePla"
                                 onClick = {
-                                    () => handleViewPlanet(planet) } > View < /button> <
-                                /div> <
-                                small className = "text-body-secondary" > UwU < /small>  <
-                                /div>  <
-                                /Card.Body>  <
-                                /Card>  <
+                                    () => handleViewPlanet(planet)
+                                } > View < /button> < /
+                                div > <
+                                small className = "text-body-secondary" > UwU < /small>  < /
+                                div > <
+                                /Card.Body>  < /
+                                Card > <
                                 /Col>))
                             } <
-                            /Row>  <
-                            /div> <Pagination className = "my-3" > <
+                            /Row>  < /
+                            div > < Pagination className = "my-3" > <
                             Pagination.Prev onClick = { handlePrevPage }
                             disabled = { currentPage === 1 }
                             />  <
@@ -130,7 +132,8 @@ export function Planets() {
                     const { name, diameter, climate, population, residents, terrain } = planetDetails;
 
                     return ( <
-                        > {
+                        >
+                        {
                             atras ? (atras && < Planets / > ) : (idResident ? ( < VerResidente idResident = { idResident }
                                 />) : ( <
                                 div className = "vewPlantS" >
@@ -149,45 +152,45 @@ export function Planets() {
                                 tr >
                                 <
                                 th > Clima < /th> <
-                                td > { climate } < /td> <
-                                /tr> <
+                                td > { climate } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Gravedad < /th> <
-                                td > { planet.gravity } < /td> <
-                                /tr> <
+                                td > { planet.gravity } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Población < /th> <
-                                td > { population } < /td> <
-                                /tr> <
+                                td > { population } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Diametro < /th> <
-                                td > { diameter } < /td> <
-                                /tr> <
+                                td > { diameter } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Terreno < /th> <
-                                td > { terrain } < /td> <
-                                /tr> <
+                                td > { terrain } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Superficie de agua < /th> <
-                                td > { planet.surface_water } < /td> <
-                                /tr> <
+                                td > { planet.surface_water } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Periodo de rotación < /th> <
-                                td > { planet.rotation_period } < /td> <
-                                /tr> <
+                                td > { planet.rotation_period } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Periodo orbital < /th> <
-                                td > { planet.orbital_period } < /td> <
-                                /tr> <
-                                /tbody> <
-                                /Table> <
+                                td > { planet.orbital_period } < /td> < /
+                                tr > <
+                                /tbody> < /
+                                Table > <
                                 /div> <
                                 div className = "divCar" >
                                 <
@@ -196,8 +199,8 @@ export function Planets() {
                                     planet.residents.length === 0 ? ( <
                                         div className = "col-md-12" >
                                         <
-                                        p > No hay residentes < /p> <
-                                        /div>
+                                        p > No hay residentes < /p> < /
+                                        div >
                                     ) : (
                                         residents.map((resident) => ( <
                                             div className = "col-md-5 "
@@ -208,19 +211,21 @@ export function Planets() {
                                             ListGroup.Item className = "contRes"
                                             action variant = "dark"
                                             onClick = {
-                                                () => handleViewResi(resident.url) } > { resident.name } < /ListGroup.Item> <
-                                            /ListGroup> <
+                                                () => handleViewResi(resident.url)
+                                            } > { resident.name } < /ListGroup.Item> < /
+                                            ListGroup > <
                                             /div>
                                         ))
                                     )
                                 } <
-                                /div> <
-                                /div> <
+                                /div> < /
+                                div > <
                                 /div> <
                                 button type = "button"
                                 className = "btn btn-sm btn-outline-secondary detallePla"
                                 onClick = {
-                                    () => setatras(true) } > < i class = "fa fa-angle-left" > < /i> Volver</button >
+                                    () => setatras(true)
+                                } > < i class = "fa fa-angle-left" > < /i> Volver</button >
                                 <
                                 /div>
                             ))
@@ -281,38 +286,38 @@ export function Planets() {
                                 tr >
                                 <
                                 th > Altura < /th> <
-                                td > { height } < /td> <
-                                /tr> <
+                                td > { height } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Mass < /th> <
-                                td > { mass } < /td> <
-                                /tr> <
+                                td > { mass } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Hair color < /th> <
-                                td > { hair_color } < /td> <
-                                /tr> <
+                                td > { hair_color } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Skin color < /th> <
-                                td > { skin_color } < /td> <
-                                /tr> <
+                                td > { skin_color } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Color de ojos < /th> <
-                                td > { eye_color } < /td> <
-                                /tr> <
+                                td > { eye_color } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Genero < /th> <
-                                td > { gender } < /td> <
-                                /tr> <
+                                td > { gender } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Birth year < /th> <
-                                td > { birth_year } < /td> <
-                                /tr> <
+                                td > { birth_year } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th className = "eresDelP" > Reside en el planeta < /th> <
@@ -320,13 +325,14 @@ export function Planets() {
                                 <
                                 button className = "contRes"
                                 onClick = {
-                                    () => handleViewPlanet(planetUrl) }
-                                action variant = "dark" > { planetName } < /button> <
-                                /td> <
-                                /tr> <
-                                /tbody> <
-                                /Table> <
-                                /div>
+                                    () => handleViewPlanet(planetUrl)
+                                }
+                                action variant = "dark" > { planetName } < /button> < /
+                                td > <
+                                /tr> < /
+                                tbody > <
+                                /Table> < /
+                                div >
 
                                 <
                                 /div>
@@ -335,7 +341,8 @@ export function Planets() {
                                 button type = "button"
                                 className = "btn btn-sm btn-outline-secondary detallePla"
                                 onClick = {
-                                    () => setatras(true) } > < i className = "fa fa-angle-left" > < /i> Volver</button >
+                                    () => setatras(true)
+                                } > < i className = "fa fa-angle-left" > < /i> Volver</button >
                                 <
                                 /div>
                             ))
@@ -373,7 +380,8 @@ export function Planets() {
                     const { name, diameter, climate, population, residents, terrain } = planetDetails;
 
                     return ( <
-                        > {
+                        >
+                        {
                             atras ? (atras && < Planets / > ) : (idResident ? ( < VerResidente idResident = { idResident }
                                 />) : ( <
                                 div className = "vewPlantS" >
@@ -392,45 +400,45 @@ export function Planets() {
                                 tr >
                                 <
                                 th > Clima < /th> <
-                                td > { climate } < /td> <
-                                /tr> <
+                                td > { climate } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Gravedad < /th> <
-                                td > { planetFetch.gravity } < /td> <
-                                /tr> <
+                                td > { planetFetch.gravity } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Población < /th> <
-                                td > { population } < /td> <
-                                /tr> <
+                                td > { population } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Diametro < /th> <
-                                td > { diameter } < /td> <
-                                /tr> <
+                                td > { diameter } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Terreno < /th> <
-                                td > { terrain } < /td> <
-                                /tr> <
+                                td > { terrain } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Superficie de agua < /th> <
-                                td > { planetFetch.surface_water } < /td> <
-                                /tr> <
+                                td > { planetFetch.surface_water } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Periodo de rotación < /th> <
-                                td > { planetFetch.rotation_period } < /td> <
-                                /tr> <
+                                td > { planetFetch.rotation_period } < /td> < /
+                                tr > <
                                 tr >
                                 <
                                 th > Periodo orbital < /th> <
-                                td > { planetFetch.orbital_period } < /td> <
-                                /tr> <
-                                /tbody> <
-                                /Table> <
+                                td > { planetFetch.orbital_period } < /td> < /
+                                tr > <
+                                /tbody> < /
+                                Table > <
                                 /div> <
                                 div className = "divCar" >
                                 <
@@ -439,8 +447,8 @@ export function Planets() {
                                     planetFetch.residents.length === 0 ? ( <
                                         div className = "col-md-12" >
                                         <
-                                        p > No hay residentes < /p> <
-                                        /div>
+                                        p > No hay residentes < /p> < /
+                                        div >
                                     ) : (
                                         residents.map((resident) => ( <
                                             div className = "col-md-5 "
@@ -451,19 +459,21 @@ export function Planets() {
                                             ListGroup.Item className = "contRes"
                                             action variant = "dark"
                                             onClick = {
-                                                () => handleViewResi(resident.url) } > { resident.name } < /ListGroup.Item> <
-                                            /ListGroup> <
+                                                () => handleViewResi(resident.url)
+                                            } > { resident.name } < /ListGroup.Item> < /
+                                            ListGroup > <
                                             /div>
                                         ))
                                     )
                                 } <
-                                /div> <
-                                /div> <
+                                /div> < /
+                                div > <
                                 /div> <
                                 button type = "button"
                                 className = "btn btn-sm btn-outline-secondary detallePla"
                                 onClick = {
-                                    () => setatras(true) } > < i class = "fa fa-angle-left" > < /i> Volver</button >
+                                    () => setatras(true)
+                                } > < i class = "fa fa-angle-left" > < /i> Volver</button >
                                 <
                                 /div>
                             ))

@@ -5,7 +5,7 @@ import { Col, ListGroup, Pagination, Row, Table } from "react-bootstrap";
 export function Planets() {
     const [planets, setPlanets] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const urlBase = "https://swapi.dev/api/planets/?page=";
+    const urlBase = "https://swapi.py4e.com/api/planets/?page=";
     const [verPla, setverPla] = useState(false);
     const [selectedPlanet, setSelectedPlanet] = useState(null);
 
@@ -60,7 +60,7 @@ export function Planets() {
                                 <
                                 Card.Body >
                                 <
-                                Card.Title > { planet.name } < /Card.Title>  <
+                                Card.Title > { planet.name } < /Card.Title>   <
                                 Card.Text >
                                 <
                                 b > Clima: < /b> {planet.climate} <br/ >
